@@ -1,0 +1,23 @@
+{
+    "name": "tomshoo/defer",
+    "description": "Backport of laravel 11 defer helper",
+    "type": "library",
+    "version": "1.0.0",
+    "require": {
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^8.0|^10.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tomshoo\\Defer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shubhanshu Tomar",
+            "email": "tomarshubhanshu@protonmail.ch"
+        }
+    ],
+    "minimum-stability": "stable"
+}
