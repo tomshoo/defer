@@ -12,7 +12,7 @@ class ConnectionCapture
 
     public function __construct()
     {
-        $connection = DB::connection()->getDatabaseName();
+        $connection = $this->getActiveConnection();
 
         $this->connectionName = $connection;
         $this->config = Config::get("database.connections.{$connection}");
@@ -37,7 +37,7 @@ class ConnectionCapture
             Config::set("database.connections.{$this->connectionName}", $this->config);
         }
 
-        if (DB::connection()->getDatabaseName() !== $this->connectionName) {
+        if ($this->getActiveConnection() !== $this->connectionName) {
             DB::setDefaultConnection($this->connectionName);
         }
     }
@@ -45,5 +45,10 @@ class ConnectionCapture
     public function connectionName()
     {
         return $this->connectionName;
+    }
+
+    protected function getActiveConnection()
+    {
+        return call_user_func([DB::connection(), 'getName']);
     }
 }
